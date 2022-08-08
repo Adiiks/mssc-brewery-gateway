@@ -11,8 +11,10 @@ public class LocalHostRouteConfig {
     @Bean
     public RouteLocator localHostRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("beer-service", r -> r.path("/api/v1/beer", "/api/v1/beer/*")
+                .route("beer-service", r -> r.path("/api/v1/beer", "/api/v1/beer/**")
                         .uri("http://localhost:8080"))
+                .route("beer-order-service", r -> r.path("/api/v1/customers/**")
+                        .uri("http://localhost:8081"))
                 .build();
     }
 }
